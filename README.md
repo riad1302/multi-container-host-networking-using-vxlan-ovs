@@ -50,6 +50,7 @@ Once the VM is up and running, access the command prompt within the VM by runnin
 </p>
 </figure>
 ## Step 2:  Update packeages and install essential packeges for this demo on both VM
+
 For Host1
 
     # update the repository
@@ -63,6 +64,7 @@ For Host2
     # Install essential tools
     sudo apt -y install net-tools docker.io openvswitch-switch
 ## Step 3: Now create two bridges per VM using OpenVSwitch ovs-vsctl cli utility.
+
 For Host1
 
     # Create two bridge using ovs
@@ -74,6 +76,7 @@ For Host2:
     sudo ovs-vsctl add-br ovs-br0
     sudo ovs-vsctl add-br ovs-br1
 Then create the internal port/interfaces to the ovs-bridge:
+
 For Host1
 
     # add port/interfaces to bridges
@@ -97,6 +100,7 @@ For Host2
     sudo ovs-vsctl show
 
 Now it's time to set the IP of the bridges and up the inteface:
+
 For Host1
 
     # set the ip to the created port/interfaces
@@ -159,6 +163,7 @@ For Host2
     sudo docker exec docker4 ip a
 Now assign the static IP address to the containers using ovs-docker utility. also ping the GW to test the connectivity.
 For Host1
+
     # add ip address to the container using ovs-docker utility
     sudo ovs-docker add-port ovs-br0 eth0 docker1 --ipaddress=192.168.1.11/24 --gateway=192.168.1.1
     sudo docker exec docker1 ip a
@@ -172,10 +177,10 @@ For Host1
 For Host2
 
     # add ip address to the container using ovs-docker utility
-    sudo ovs-docker add-port ovs-br0 eth0 docker3 --ipaddress=192.168.1.11/24 --gateway=192.168.1.1
+    sudo ovs-docker add-port ovs-br0 eth0 docker3 --ipaddress=192.168.1.12/24 --gateway=192.168.1.1
     sudo docker exec docker3 ip a
     
-    sudo ovs-docker add-port ovs-br1 eth0 docker4 --ipaddress=192.168.2.11/24 --gateway=192.168.2.1
+    sudo ovs-docker add-port ovs-br1 eth0 docker4 --ipaddress=192.168.2.12/24 --gateway=192.168.2.1
     sudo docker exec docker4 ip a
     
     # ping the gateway to check if container connected to ovs-bridges
