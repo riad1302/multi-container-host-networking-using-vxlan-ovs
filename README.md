@@ -49,6 +49,7 @@ Once the VM is up and running, access the command prompt within the VM by runnin
   <img src="./assests/diagram.png" alt="Dataflow Diagram" style="background-color:white" />
 </p>
 </figure>
+
 ## Step 2:  Update packeages and install essential packeges for this demo on both VM
 
 For Host1
